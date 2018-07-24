@@ -35,6 +35,7 @@ handleSubmit(event){
 }
 
   render() {
+      console.log(this.props.history);
     return (
         <form onSubmit={this.handleSubmit.bind(this)}>
              <ControlLabel>Street</ControlLabel>
