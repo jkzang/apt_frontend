@@ -4,7 +4,8 @@ import apartments from "../data"
 class Apartment extends Component {
   render() {
       let id = this.props.match.params.id
-      console.log(this.props.match.params.id);
+
+      console.log(this.props);
     return (
         <div>
               <h1>{apartments[id].street}</h1>

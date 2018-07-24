@@ -8,11 +8,12 @@ class List extends Component {
   render() {
     return (
       <div>
+      <h1>Venuepoint</h1>
         {apartments.map((apt) => {
             console.log(apt.id);
             return (
                 <div>
-                <Link to={`/apartment/${apt.id}`}>{apt.street}</Link>
+                <Link to={`/apartments/${apt.id}`}>{apt.street}</Link>
                 <p>{apt.city}</p>
                 <p>{apt.zip}</p>
                 <p>{apt.state}</p>
