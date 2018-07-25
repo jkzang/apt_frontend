@@ -20,15 +20,15 @@ class ApartmentCtr extends Component {
             <div>
                 {Auth.loggedIn()
                     ? <Switch>
-                    <Route path={`${url}/:id`} component={Apartment} />
-                        <Route path={`${url}`}  component={List} />
                         <Route path={`${url}/new`} component={Form} />
+                        <Route path={`${url}/:id`} component={Apartment} />
+                        <Route path={`${url}`}  component={List} />
 
                     </Switch>
                     : <Switch>
-                        <Route exact path={`${url}`}  component={List} />
-                        <Redirect from="/apartments/new" to="/Login"/>
-                        <Redirect from={`${url}/:id`} to="/Login"/>
+                        <Route exact path={`${url}`}  component={Login} />
+                        <Redirect from={`${url}/new`} to="/"/>
+                        <Redirect from={`${url}/:id`} to="/"/>
                         <Route exact path="/" component={List} />
                     </Switch>
                 }

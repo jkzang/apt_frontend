@@ -23,7 +23,7 @@ class Login extends Component {
     e.preventDefault()
     this.Auth.login(this.state.email,this.state.password)
     .then(res =>{
-      this.props.history.replace('/')
+      this.props.history.replace('/apartments')
     })
     .catch(err =>{ alert(err) })
   }
