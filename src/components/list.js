@@ -8,9 +8,7 @@ class List extends Component {
   render() {
     return (
       <div>
-      <h1>Venuepoint</h1>
         {apartments.map((apt) => {
-            console.log(apt.id);
             return (
                 <div>
                 <Link to={`/apartments/${apt.id}`}>{apt.street}</Link>

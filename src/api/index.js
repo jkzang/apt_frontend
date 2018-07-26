@@ -16,7 +16,10 @@ let createApartment = function(apartment) {
 export default createApartment
 
 let createUser = function(user) {
+    // console.log("User object", user);
+    // console.log("Json", JSON.stringify(user));
     return fetch("http://localhost:3001/users", {
+
         body: JSON.stringify(user),  // <- we need to stringify the json for fetch
         headers: {  // <- We specify that we're sending JSON, and expect JSON back
             'Content-Type': 'application/json'

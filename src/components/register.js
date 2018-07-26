@@ -4,41 +4,49 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { createApartment, createUser } from "../api/index"
 import AuthService from '../services/AuthService'
 
-const Auth = new AuthService()
 
 class Register extends Component {
     constructor(props){
         super(props)
         this.state = {
-
+            Auth: new AuthService(),
+            form: {
                 user: {
                     name:'',
                     email:'',
-                    password:''
+                    password:'',
+                    password_confirmation: ''
                 }
+
+            }
 
         }
 }
+
 handleChange(event){
-    let { user } = this.state
-    this.user[event.target.name] = event.target.value
-    this.setState({user: user})
+    let { form } = this.state
+    form.user[event.target.name] = event.target.value
+    this.setState({form: form})
 }
 
 handleSubmit(event){
     event.preventDefault()
-    createUser(this.state.form)
+    let {form} = this.state
+
+    form.user.password_confirmation = form.user.password
+
+    createUser(form)
     .then(successUser => {
         console.log("SUCCESS! New user: ", successUser);
     })
     .then(successUser =>{
       this.props.history.replace('/apartments')
     })
-
-    this.Auth.login(this.state.user.email,this.state.user.password)
-    .then(res =>{
-      this.props.history.replace('/apartments')
-    })
+    //
+    // this.state.Auth.login(this.state.user.email,this.state.user.password)
+    // .then(res =>{
+    //   this.props.history.replace('/apartments')
+    // })
 }
 
   render() {
@@ -48,7 +56,7 @@ handleSubmit(event){
              <FormControl
                type="text"
                name = "name"
-               value={this.state.user.name}
+               value={this.state.value}
                placeholder="Enter your name"
                onChange={this.handleChange.bind(this)}
              /><br/>
@@ -57,7 +65,7 @@ handleSubmit(event){
              <FormControl
                type="text"
                name = "email"
-               value={this.state.user.email}
+               value={this.state.value}
                placeholder="Enter your email"
                onChange={this.handleChange.bind(this)}
              /><br/>
@@ -66,7 +74,7 @@ handleSubmit(event){
              <FormControl
                type="password"
                name = "password"
-               value={this.state.user.password}
+               value={this.state.value}
                placeholder="Enter a secure password"
                onChange={this.handleChange.bind(this)}
              /><br/>

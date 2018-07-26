@@ -75,15 +75,13 @@ export default class AuthService {
       if (this.loggedIn()) {
         headers['Authorization'] = 'Bearer ' + this.getToken()
       }
-
       return fetch(url, {
         headers,
         ...options
-      })
+    })
       .then(this._checkStatus)
       .then(response => response.json())
     }
-
     _checkStatus(response) {
       if (response.status >= 200 && response.status < 300) {
         return response
